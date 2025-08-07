@@ -3,6 +3,7 @@ package Controller;
 import Controller.EnumUtils.EnumUtils;
 import model.Pet;
 
+import javax.xml.transform.Source;
 import java.util.Scanner;
 
 public class CadastrarPet {
@@ -54,15 +55,15 @@ public class CadastrarPet {
 
        System.out.println("Digite o numero da casa: ");
        String numeroCasa = input.nextLine();
-       if (numeroCasa.isBlank()) numeroCasa = "Não informado";
+       if (numeroCasa.isBlank()) numeroCasa = Pet.naoInformado;
 
        System.out.println("Digite a rua: ");
        String rua = input.nextLine();
-       if (rua.isBlank()) rua = "Não informada";
+       if (rua.isBlank()) rua = Pet.naoInformado;
 
        System.out.println("Digite o nome da cidade: ");
        String cidade = input.nextLine();
-       if (cidade.isBlank()) rua = "Não informada";
+       if (cidade.isBlank()) rua = Pet.naoInformado;
 
        String endCompleto = "Rua " + rua + "Numero da casa " + numeroCasa + "Cidade: " + cidade;
        pet.setEndereco(endCompleto);
@@ -73,7 +74,7 @@ public class CadastrarPet {
        while (true){
            String idadePet = input.nextLine().replace(",", ".");
            if (idadePet.isBlank()){
-               idadePet = "Idade Não informada";
+               idadePet = Pet.naoInformado;
                break;
            }
 
@@ -90,6 +91,49 @@ public class CadastrarPet {
        }
 
        //Opção n6
+       System.out.println(FileRepository.readSpecifyLine(6));
+
+       while (true){
+           String peso = input.nextLine().replace(",", ".").trim();
+
+           if (peso.isBlank()){
+               peso = Pet.naoInformado;
+               break;
+           }
+
+           try {
+               double pesoD = Double.parseDouble(peso);
+
+               if (pesoD < 0.5 || pesoD > 60) throw new IllegalArgumentException("O peso deve estar entre 0.5Kg e 60Kg");
+
+               pet.setPeso(pesoD);
+               break;
+           } catch (IllegalArgumentException e){
+               System.out.println(e.getMessage());
+           }
+       }
+
+       //Opção n7
+       System.out.println(FileRepository.readSpecifyLine(7));
+
+       while (true){
+           String raca = input.nextLine().trim();
+
+           if (raca.isBlank()){
+               pet.setRaca(Pet.naoInformado);
+               break;
+           } else if (!raca.matches("[A-Za-zÀ-ÿ\\s]+")) {
+               System.out.println("Raça inválida. Digite apenas letras (sem números ou símbolos)");
+               
+           } else {
+               pet.setRaca(raca);
+               break;
+           }
+       }
+
+       System.out.println("Pet cadastrado com sucesso");
+       System.out.println(pet);
+       PetWriter.salvarPetEmArquivo(pet);
    }
 
 

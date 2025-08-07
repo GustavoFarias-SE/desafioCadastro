@@ -8,6 +8,7 @@ public class Pet {
     private double peso;
     private TipoPet tipoPet;
     private SexoPet sexoPet;
+    public static final String naoInformado = "Não informado";
 
 //    public Pet(String nome, String raca, int idade, double peso) {
 //        this.nome = nome;
