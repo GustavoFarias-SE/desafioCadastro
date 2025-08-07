@@ -1,6 +1,5 @@
-package Services;
+package Controller;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class MenuInicial {
@@ -57,7 +56,5 @@ public class MenuInicial {
             }
 
         }
-
-
     }
 }
