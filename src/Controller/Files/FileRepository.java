@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Files;
 
 import java.io.*;
 
@@ -69,7 +69,7 @@ public class FileRepository {
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String linha;
-            int cont = 0;
+            int cont = 1;
 
             while ((linha = br.readLine()) != null) {
                 if (cont == targetLine) {

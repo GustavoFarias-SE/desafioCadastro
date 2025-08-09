@@ -1,9 +1,10 @@
-package Controller;
+package Controller.OpcoesMenu;
 
 import Controller.EnumUtils.EnumUtils;
+import Controller.Files.FileRepository;
+import Controller.Files.PetWriter;
 import model.Pet;
 
-import javax.xml.transform.Source;
 import java.util.Scanner;
 
 public class CadastrarPet {
@@ -13,19 +14,21 @@ public class CadastrarPet {
         Pet pet = new Pet();
 
         //Opção n1
-        System.out.println(FileRepository.readSpecifyLine(1));
+       System.out.println(FileRepository.readSpecifyLine(1));
 
-        String resposta = input.nextLine();
+       while (true) {
+           String resposta = input.nextLine();
+           try {
+               pet.setNome(resposta);
+               break;
+           } catch (IllegalArgumentException e) {
+               System.out.println("Erro: " + e.getMessage());
+           }
+       }
 
-        try {
-            pet.setNome(resposta);
-        } catch (IllegalArgumentException e){
-
-            System.out.println("Erro: " + e.getMessage());
-        }
 
 
-        // Opção n2
+       // Opção n2
         System.out.println(FileRepository.readSpecifyLine(2));
         Pet.TipoPet tipoPet = null;
         while (tipoPet == null){
@@ -65,7 +68,7 @@ public class CadastrarPet {
        String cidade = input.nextLine();
        if (cidade.isBlank()) rua = Pet.naoInformado;
 
-       String endCompleto = "Rua " + rua + "Numero da casa " + numeroCasa + "Cidade: " + cidade;
+       String endCompleto = "Rua " + rua + ", Numero da casa " + numeroCasa + ", Cidade: " + cidade;
        pet.setEndereco(endCompleto);
 
        //Opção n5
@@ -82,7 +85,7 @@ public class CadastrarPet {
                double idade = Double.parseDouble(idadePet);
 
                if (idade > 20) throw new IllegalArgumentException("Idade inválida maior que 20 anos");
-               pet.setIdade(idade < 1 ? (int) idade : (int) idade);
+               pet.setIdade((int) idade);
                break;
 
            } catch (IllegalArgumentException e){

@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Files;
 
 import model.Pet;
 
@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 public class PetWriter {
 

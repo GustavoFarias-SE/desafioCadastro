@@ -25,7 +25,7 @@ public class EnumUtils {
             case "FEMEA":
                 return Pet.SexoPet.FEMEA;
             default:
-                throw new IllegalArgumentException("Sexo do pet inválido, use 'machou' ou 'femea'");
+                throw new IllegalArgumentException("Sexo do pet inválido, use 'macho' ou 'femea'");
         }
     }
 }
