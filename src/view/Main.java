@@ -3,6 +3,7 @@ package view;
 import Controller.OpcoesMenu.AlterarPet;
 import Controller.OpcoesMenu.BuscaPet;
 import Controller.OpcoesMenu.CadastrarPet;
+import Controller.OpcoesMenu.DeletarPet;
 
 import java.io.File;
 import java.util.Scanner;
@@ -20,9 +21,7 @@ public class Main {
             System.out.println("1. Cadastrar pet");
             System.out.println("2. Alterar os dados do pet cadastrado");
             System.out.println("3. Deletar um pet cadastrado");
-            System.out.println("4. Listar todos os pets cadastrados");
-            System.out.println("5. Listar pets por algum critério");
-            System.out.println("6. Sair");
+            System.out.println("4. Sair");
             opcao = input.nextInt();
             input.nextLine();
 
@@ -37,8 +36,13 @@ public class Main {
                         AlterarPet.alterarPet(petArquivo);
                         System.out.println("Você escolheu: " + petArquivo.getName());
                     }
+                case 3:
+                    DeletarPet.deletarPet();
+                    break;
+                case 4:
+                    System.out.println("Saindo...");
             }
-        } while (opcao != 6);
+        } while (opcao != 4);
 
         input.close();
 
