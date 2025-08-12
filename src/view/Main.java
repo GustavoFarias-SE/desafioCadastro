@@ -1,11 +1,13 @@
 package view;
 
+import Controller.OpcoesMenu.AlterarPet;
+import Controller.OpcoesMenu.BuscaPet;
 import Controller.OpcoesMenu.CadastrarPet;
 
+import java.io.File;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
 
@@ -27,6 +29,14 @@ public class Main {
             switch (opcao){
                 case 1:
                     cadastrarPet.cadastrar();
+                    break;
+
+                case 2:
+                    File petArquivo = BuscaPet.buscarPet();
+                    if (petArquivo != null) {
+                        AlterarPet.alterarPet(petArquivo);
+                        System.out.println("Você escolheu: " + petArquivo.getName());
+                    }
             }
         } while (opcao != 6);
 
